@@ -1,0 +1,80 @@
+/* Footer background and text */
+footer.bg-dark {
+  background-color: #121212; /* dark background */
+  color: #f3f3f3;
+  font-family: 'Ubuntu', sans-serif;
+  line-height: 1.6;
+}
+
+/* Container padding */
+footer .container {
+  max-width: 1140px;
+  margin: 0 auto;
+}
+
+/* Headings (About, Quick Links, Contact, Follow Us) */
+footer h5,
+footer h6 {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 800;
+  color: #fbbf24; /* golden yellow */
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 1rem;
+  text-shadow: 0 0 6px #fbbf24;
+}
+
+/* Paragraph text */
+footer p {
+  font-size: 0.95rem;
+  color: #ddd;
+  margin-bottom: 0.7rem;
+}
+
+/* Links (Quick Links & Social Media) */
+footer a.text-white {
+  color: #a6d854; /* soft green */
+  transition: color 0.3s ease, transform 0.3s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.1rem;
+}
+
+footer a.text-white:hover,
+footer a.text-white:focus {
+  color: #fbbf24; /* golden yellow */
+  text-decoration: underline;
+  transform: scale(1.1);
+}
+
+/* Icons (Contact & Social Media) */
+footer i {
+  color: inherit; /* inherit color from link or paragraph */
+  vertical-align: middle;
+  font-size: 1.2rem;
+}
+
+/* Horizontal rule */
+footer hr {
+  border-color: #333;
+  opacity: 0.4;
+  margin-top: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Copyright text */
+footer .text-center {
+  color: #bbb;
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+}
+
+/* Responsive tweaks */
+@media (max-width: 767px) {
+  footer .container .row > div {
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+}

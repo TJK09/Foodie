@@ -1,0 +1,25 @@
+.page-title {
+  font-weight: 600;
+  color: #fbbf24;
+}
+
+.blog-card {
+  border: none;
+  transition: transform 0.2s ease-in-out;
+  background-color: #1e1e1e;
+  color: #ffffff;
+}
+
+.blog-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+}
+
+.blog-card .card-img-top {
+  height: 200px;
+  object-fit: cover;
+}
+
+.blog-excerpt {
+  font-size: 0.95rem;
+}

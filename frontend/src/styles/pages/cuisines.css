@@ -1,0 +1,100 @@
+/* Base dark theme */
+body {
+  background-color: #121212;
+  color: #e0e0e0;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+/* Container tweaks */
+.container {
+  max-width: 1140px;
+}
+
+.mb-4{
+    color: #fbbf24;
+}
+
+/* Card styling */
+.cuisine-card {
+  background-color: #1e1e1e;
+  border: none;
+  border-radius: 0.75rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.cuisine-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 20px rgba(22, 163, 74, 0.4);
+}
+
+.cuisine-img {
+  border-top-left-radius: 0.75rem;
+  border-top-right-radius: 0.75rem;
+  height: 180px;
+  object-fit: cover;
+}
+
+/* Card body */
+.card-body {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+}
+
+/* Typography */
+.card-title {
+  font-weight: 700;
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
+  color: #fbbf24; /* Golden yellow accent */
+}
+
+.card-text {
+  font-size: 0.9rem;
+  line-height: 1.4;
+  margin-bottom: 0.6rem;
+  color: #cccccc;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+}
+
+/* Collapsed: show approx 2 lines */
+.card-text.collapsed {
+  max-height: 2.8em; /* ~2 lines */
+}
+
+/* Expanded: full content visible */
+.card-text.expanded {
+  max-height: 1000px; /* large enough for full text */
+}
+
+/* Read More button */
+.read-more-btn {
+  margin-top: 0.5rem;
+  background-color: transparent;
+  border: 2px solid #16a34a; /* green accent */
+  color: #16a34a;
+  padding: 0.4rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  font-family: 'Ubuntu', sans-serif;
+  transition: all 0.3s ease;
+  align-self: flex-start;
+  cursor: pointer;
+}
+
+.read-more-btn:hover {
+  background-color: #16a34a;
+  color: #121212;
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .cuisine-img {
+    height: 140px;
+  }
+}

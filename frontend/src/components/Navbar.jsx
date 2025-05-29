@@ -1,0 +1,48 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
+import  '../styles/components/Navbar.css';
+import Logo from '../assets/logo.png';
+
+function Navbar() {
+    return (
+        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div className="container-fluid d-flex justify-content-between align-items-center">
+
+                {/* Brand - Left */}
+                <Link className="navbar-brand" to="/"><img src={Logo} alt='Logo'></img>FOODIE
+                </Link>
+
+                {/* Centered Nav Links */}
+                <div className="collapse navbar-collapse justify-content-center" id="navbarNav">
+                    <ul className="navbar-nav">
+                        <li className="nav-item">
+                            <Link className="nav-link active text-success" to="/">Home</Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link className="nav-link text-success" to="/cuisines">Cuisines</Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link className="nav-link text-success" to="/Recipe">Recipes</Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link className="nav-link text-success" to="/about">About</Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link className="nav-link text-success" to="/contact">Contact</Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link className="nav-link text-success" to="/Blog">Blogs</Link>
+                        </li>
+                    </ul>
+                </div>
+
+                {/* Login Button - Right */}
+                <div className="d-none d-lg-block">
+                    <Link to="/login" className="btn btn-outline-warning">Login</Link>
+                </div>
+            </div>
+        </nav>
+    );
+}
+
+export default Navbar;

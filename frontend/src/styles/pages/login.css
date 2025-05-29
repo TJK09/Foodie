@@ -1,0 +1,92 @@
+/* Scoped styles for the login page */
+
+.login-page {
+  background-color: #121212;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.login-container {
+  background-color: #1e1e1e;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(22, 163, 74, 0.3);
+  padding: 2rem;
+  max-width: 400px;
+  margin: 4rem auto;
+}
+
+.login-title {
+  color: #fbbf24;
+  text-align: center;
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+.login-page .form-label {
+  color: #ccc;
+  font-weight: 500;
+}
+
+.login-page .form-control {
+  background-color: #1a1a1a;
+  color: #e0e0e0;
+  border: 1px solid #16a34a;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+}
+
+.login-page .form-control:focus {
+  border-color: #fbbf24;
+  outline: none;
+  box-shadow: none;
+}
+
+.login-page .btn-success {
+  background-color: #16a34a;
+  border: none;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.login-page .btn-success:hover {
+  background-color: #fbbf24;
+  color: #121212;
+}
+
+.login-page .alert-danger {
+  background-color: #dc2626;
+  color: white;
+  padding: 0.5rem 1rem;
+  margin-bottom: 1rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+}
+
+.login-links {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.login-links .small {
+  color: #16a34a;
+  text-decoration: none;
+}
+
+.login-links .small:hover {
+  color: #fbbf24;
+  text-decoration: underline;
+}
+
+/* Responsive fix */
+@media (max-width: 480px) {
+  .login-container {
+    margin: 2rem 1rem;
+    padding: 1.5rem;
+  }
+}

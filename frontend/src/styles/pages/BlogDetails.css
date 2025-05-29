@@ -1,0 +1,22 @@
+.blog-details {
+  color: #ffffff;
+  max-width: 800px;
+}
+
+.blog-image {
+  width: 100%;
+  height: auto;
+  max-height: 500px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.blog-content {
+  white-space: pre-line;
+  font-size: 1.1rem;
+  line-height: 1.8;
+}
+
+.blog-head {
+  color: #ffffff !important;
+}

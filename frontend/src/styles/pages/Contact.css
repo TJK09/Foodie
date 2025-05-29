@@ -1,0 +1,51 @@
+/* Contact.css */
+
+.container {
+  max-width: 960px;
+}
+
+h2, h4 {
+  color: #fbbf24; /* Golden yellow accent */
+  font-weight: bold;
+}
+
+label {
+  font-weight: 500;
+}
+
+.form-control:focus {
+  border-color: #fbbf24;
+  box-shadow: 0 0 0 0.2rem rgba(251, 191, 36, 0.25);
+}
+
+.btn-warning {
+  background-color: #fbbf24;
+  border: none;
+}
+
+.btn-warning:hover {
+  background-color: #e0a800;
+}
+
+.btn-success {
+  background-color: #16a34a;
+  border: none;
+}
+
+.btn-success:hover {
+  background-color: #12803a;
+}
+
+/* Optional: animate inputs on focus */
+.form-control {
+  transition: all 0.2s ease-in-out;
+}
+
+/* Spacing tweaks */
+.mt-5 {
+  margin-top: 3rem !important;
+}
+
+.mb-4 {
+  margin-bottom: 1.5rem !important;
+}
