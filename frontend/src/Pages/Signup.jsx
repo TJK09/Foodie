@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import '../styles/pages/login.css'; // Reusing the same CSS for styling consistency
+import '../styles/pages/login.css';
 
 const Signup = () => {
   const [form, setForm] = useState({
@@ -12,44 +12,84 @@ const Signup = () => {
     confirmPassword: ''
   });
   const [error, setError] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
-  e.preventDefault();
-  const { name, email, password, confirmPassword } = form;
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const { name, email, password, confirmPassword } = form;
 
-  // Simple regex to check email format
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  // Simple regex for name: letters (a-z, A-Z), spaces, apostrophes and hyphens allowed
-  const nameRegex = /^[a-zA-Z\s'-]{2,}$/;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const nameRegex = /^[a-zA-Z\s'-]{2,}$/;
 
-  if (!name || !email || !password || !confirmPassword) {
-    setError('Please fill in all fields');
-    return;
-  }
+    if (!name || !email || !password || !confirmPassword) {
+      setError('Please fill in all fields');
+      setSuccessMessage('');
+      return;
+    }
 
-  if (!nameRegex.test(name)) {
-    setError('Please enter a valid name (only letters, spaces, apostrophes, and hyphens allowed)');
-    return;
-  }
+    if (!nameRegex.test(name)) {
+      setError('Please enter a valid name');
+      setSuccessMessage('');
+      return;
+    }
 
-  if (!emailRegex.test(email)) {
-    setError('Please enter a valid email address');
-    return;
-  }
+    if (!emailRegex.test(email)) {
+      setError('Please enter a valid email');
+      setSuccessMessage('');
+      return;
+    }
 
-  if (password !== confirmPassword) {
-    setError('Passwords do not match');
-    return;
-  }
+    if (password !== confirmPassword) {
+      setError('Passwords do not match');
+      setSuccessMessage('');
+      return;
+    }
 
-  setError('');
-  alert(`Signing up with email: ${email}`);
-};
+    setError('');
+    setLoading(true);
 
+    try {
+      const response = await fetch('http://localhost:8000/api/user/register/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          username: name,
+          email,
+          password
+        })
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        setError(data.error || 'Signup failed');
+        setSuccessMessage('');
+      } else {
+        setSuccessMessage('Signup successful! Please check your email to verify your account before logging in.');
+        setError('');
+        // Optionally clear form here
+        setForm({
+          name: '',
+          email: '',
+          password: '',
+          confirmPassword: ''
+        });
+      }
+    } catch (error) {
+      console.error('Signup error:', error);
+      setError('Something went wrong. Please try again later.');
+      setSuccessMessage('');
+    }
+
+    setLoading(false);
+  };
 
   return (
     <div className="login-page">
@@ -57,6 +97,7 @@ const Signup = () => {
       <div className="login-container">
         <h2 className="login-title">Create Your Foodie Account</h2>
         {error && <div className="alert alert-danger">{error}</div>}
+        {successMessage && <div className="alert alert-success">{successMessage}</div>}
         <form onSubmit={handleSubmit} noValidate>
           <div className="mb-3">
             <label htmlFor="name" className="form-label">Full Name</label>
@@ -70,6 +111,7 @@ const Signup = () => {
               onChange={handleChange}
               required
               autoFocus
+              disabled={loading}
             />
           </div>
           <div className="mb-3">
@@ -83,6 +125,7 @@ const Signup = () => {
               value={form.email}
               onChange={handleChange}
               required
+              disabled={loading}
             />
           </div>
           <div className="mb-3">
@@ -96,6 +139,7 @@ const Signup = () => {
               value={form.password}
               onChange={handleChange}
               required
+              disabled={loading}
             />
           </div>
           <div className="mb-3">
@@ -109,11 +153,14 @@ const Signup = () => {
               value={form.confirmPassword}
               onChange={handleChange}
               required
+              disabled={loading}
             />
           </div>
-          <button className="btn btn-warning w-100">Sign Up</button>
+          <button className="btn btn-warning w-100" type="submit" disabled={loading}>
+            {loading ? 'Signing Up...' : 'Sign Up'}
+          </button>
         </form>
-        <div className="login-links">
+        <div className="login-links mt-3">
           <Link to='/login' className="small">Already have an account? Login</Link>
         </div>
       </div>

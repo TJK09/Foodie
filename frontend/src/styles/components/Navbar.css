@@ -73,6 +73,37 @@
   border-color: #d4af37;
 }
 
+/* Username text next to logout button */
+.navbar-user {
+  color: #fbbf24; /* golden yellow */
+  font-weight: 700;
+  font-family: 'Ubuntu', sans-serif;
+  margin-right: 1rem;
+  font-size: 1.1rem;
+  text-shadow: 0 0 6px #fbbf24;
+  vertical-align: middle;
+  display: inline-block;
+}
+
+/* Logout button */
+.btn-logout {
+  color: #fbbf24;
+  border: 2px solid #fbbf24;
+  font-weight: 700;
+  border-radius: 30px;
+  padding: 0.35rem 1rem;
+  background-color: transparent;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-logout:hover {
+  background-color: #fbbf24;
+  color: #121212;
+  box-shadow: 0 4px 12px #d4af37;
+  border-color: #d4af37;
+}
+
 /* Responsive tweaks if needed */
 @media (max-width: 991px) {
   .navbar-nav {
@@ -81,5 +112,11 @@
 
   .nav-link {
     margin: 0.5rem 0;
+  }
+
+  .navbar-user, .btn-logout {
+    display: block;
+    margin: 0.3rem auto;
+    text-align: center;
   }
 }

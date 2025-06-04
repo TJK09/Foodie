@@ -63,7 +63,7 @@ function Footer() {
 
         <hr className="mb-4" />
         <div className="text-center">
-          &copy; {new Date().getFullYear()} Foodie. All rights reserved.
+          &copy; {new Date().getFullYear()} Foodie. Designed by Taimur Jan.
         </div>
       </div>
     </footer>

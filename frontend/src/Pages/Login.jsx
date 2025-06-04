@@ -1,33 +1,70 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import '../styles/pages/login.css';
 
 const Login = () => {
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
-  e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const usernameRegex = /^[a-zA-Z0-9_]{3,30}$/;
 
-  if (!email || !password) {
-    setError('Please fill in all fields');
-    return;
-  }
+    if (!username || !password) {
+      setError('Please fill in all fields');
+      return;
+    }
 
-  if (!emailRegex.test(email)) {
-    setError('Please enter a valid email address');
-    return;
-  }
+    if (!usernameRegex.test(username)) {
+      setError('Please enter a valid username (3-30 chars, letters/numbers/underscores)');
+      return;
+    }
 
-  setError('');
-  alert(`Logging in with email: ${email}`);
-};
+    setError('');
 
+    try {
+      const response = await fetch('http://localhost:8000/api/token/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          username,
+          password,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        // Customize error messages for unverified email
+        if (
+          data.detail && 
+          (data.detail.toLowerCase().includes('inactive') || data.detail.toLowerCase().includes('verify'))
+        ) {
+          setError('Your email is not verified yet. Please check your email to verify your account.');
+        } else {
+          setError(data.detail || 'Login failed. Please check your credentials.');
+        }
+      } else {
+        // Successful login
+        localStorage.setItem('access_token', data.access);
+        localStorage.setItem('refresh_token', data.refresh);
+        localStorage.setItem('username', username);
+
+        alert('Login successful!');
+        navigate('/');
+      }
+    } catch (error) {
+      console.error('Login error:', error);
+      setError('Something went wrong. Please try again later.');
+    }
+  };
 
   return (
     <div className="login-page">
@@ -37,14 +74,14 @@ const Login = () => {
         {error && <div className="alert alert-danger">{error}</div>}
         <form onSubmit={handleSubmit} noValidate>
           <div className="mb-3">
-            <label htmlFor="email" className="form-label">Email Address</label>
+            <label htmlFor="username" className="form-label">Username</label>
             <input
-              type="email"
+              type="text"
               className="form-control"
-              id="email"
-              placeholder="youremail@example.com"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              id="username"
+              placeholder="Enter your username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
               required
               autoFocus
             />
@@ -63,7 +100,7 @@ const Login = () => {
           </div>
           <button className="btn btn-success w-100">Login</button>
         </form>
-        <div className="login-links">
+        <div className="login-links d-flex justify-content-between mt-3">
           <Link to='/forgot-password' className="small">Forgot Password?</Link>
           <Link to='/signup' className='small'>Register</Link>
         </div>
@@ -74,5 +111,3 @@ const Login = () => {
 };
 
 export default Login;
-
-

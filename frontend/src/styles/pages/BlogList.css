@@ -1,3 +1,4 @@
+/* Existing Styles */
 .page-title {
   font-weight: 600;
   color: #fbbf24;
@@ -12,7 +13,7 @@
 
 .blog-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
 .blog-card .card-img-top {
@@ -22,4 +23,36 @@
 
 .blog-excerpt {
   font-size: 0.95rem;
+}
+
+/* New Button Styles */
+.blog-btn {
+  font-weight: 500;
+  padding: 0.4rem 0.75rem;
+  font-size: 0.9rem;
+  border-radius: 0.5rem;
+  border: none;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  margin-right: 0.5rem;
+  cursor: pointer;
+}
+
+.blog-btn.read {
+  background-color: #fbbf24; /* golden yellow */
+  color: #1e1e1e;
+}
+
+.blog-btn.update {
+  background-color: #16a34a; /* green */
+  color: #ffffff;
+}
+
+.blog-btn.delete {
+  background-color: #dc2626; /* red */
+  color: #ffffff;
+}
+
+.blog-btn:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
 }

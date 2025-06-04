@@ -13,6 +13,9 @@ import Signup from './Pages/Signup.jsx';
 import ForgotPassword from './Pages/ForgotPassword.jsx';
 import BlogList from './Pages/BlogList.jsx';
 import BlogDetail from './Pages/BlogDetails.jsx';
+import CreateBlog from './Pages/create-blog.jsx';
+import UpdateBlog from './Pages/UpdateBlogs.jsx';
+import ResetPassword from './Pages/ResetPassword.jsx';
 
 function App() {
   return (
@@ -29,6 +32,9 @@ function App() {
         <Route path='/forgot-password' element={<ForgotPassword/>}/>
         <Route path='/Blog' element={<BlogList/>}/>
         <Route path='/Blog/:id' element={<BlogDetail/>}/>
+        <Route path='/create-blog' element={<CreateBlog/>}/>
+        <Route path='/update-blog/:id' element={<UpdateBlog/>}/>
+        <Route path="/reset-password/:uid/:token" element={<ResetPassword />} />
       </Routes>
     </Router>
   );
